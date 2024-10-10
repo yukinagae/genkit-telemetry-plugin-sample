@@ -1,14 +1,22 @@
 import { generate } from '@genkit-ai/ai'
 import { configureGenkit } from '@genkit-ai/core'
-// import { GenkitMetric, genkitEval } from '@genkit-ai/evaluator'
 import { defineFlow } from '@genkit-ai/flow'
 import { gemini15Flash, googleAI } from '@genkit-ai/googleai'
 import * as z from 'zod'
 
+import { myPlugin } from './myPlugin'
+
 configureGenkit({
-  plugins: [googleAI()],
+  plugins: [
+    googleAI(), //
+    myPlugin(), //
+  ],
   logLevel: 'debug',
   enableTracingAndMetrics: true,
+  telemetry: {
+    instrumentation: 'myPlugin',
+    logger: 'myPlugin',
+  },
 })
 
 export const menuSuggestionFlow = defineFlow(
