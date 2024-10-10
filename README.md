@@ -1,0 +1,1 @@
+# genkit-telemetry-plugin-sample
